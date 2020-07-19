@@ -27,8 +27,17 @@ for file in os.listdir(masked_dir):
   image_enc = face_recoginition.face_encodings(img)[0]
 
   results = face_recoginition.compare_faces(known_encodings,image_enc)
-  
+
+  for i in range(len(results)):
+    if results[i]:
+      name = unmasked_names[i]
+      (top,right,bottom,left) = face_recogintion.face_locations(img)[0]
+      cv2.rectangle(img, (left,top),(right,bottom), (0,0,255),2)
+      cv2.putText(img,name, (left+2,bottom+20),cv2.FONT_HERSHEY_PLAIN,0.8,(255,255,255),1)  
+      cv2.imshow(img)
   print(results)
+
+
 
 
 
