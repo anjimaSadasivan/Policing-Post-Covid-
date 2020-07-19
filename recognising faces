@@ -1,0 +1,34 @@
+import face_recognition
+import cv2
+import os
+from google.colab.patches import cv2_imshow
+
+def read_image(path):
+  img = cv2.imread(path)
+  (h,w) = img.shape[:2]
+  width = 500
+  ratio = width/float(w)
+  height = int (h*ratio)
+  return cv2.resize(image, (width,height))
+unmasked_encoding =[]
+unmasked_names = []
+unmasked_dir = 'unmasked'
+
+for file in os.listdir(unmasked_dir):
+  image = read_image(unmasked_dir + '/' + file)
+  image_enc = face_recogintion.face_encodings(img)[0]
+  unmasked_encodings.append(img_enc)
+  unmasked_names.append(file.split('.'))[0]
+
+masked_dir ='masked'
+for file in os.listdir(masked_dir):
+  print("processing",file)
+  img = read_image(unknown_dir + '/' + file)
+  image_enc = face_recoginition.face_encodings(img)[0]
+
+  results = face_recoginition.compare_faces(known_encodings,image_enc)
+  
+  print(results)
+
+
+
